@@ -42,7 +42,7 @@ class ShopPage extends StatelessWidget {
           ),
         ),
 
-        // hot picks (products)
+        // hot picks (text)
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 25.0),
           child: Row(
@@ -56,17 +56,22 @@ class ShopPage extends StatelessWidget {
                 'See all',
                 style: TextStyle(
                     color: Colors.blue,
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.bold),
               )
             ],
           ),
         ),
+
         const SizedBox(
           height: 10,
         ),
+
+        // hot picks (items)
         Expanded(
           child: ListView.builder(
+            // note: added padding to listview itself solved the issue instead of wrapping it with container.
+            padding: const EdgeInsets.only(right: 25),
             itemCount: 5,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
@@ -82,6 +87,13 @@ class ShopPage extends StatelessWidget {
             },
           ),
         ),
+
+        const Padding(
+          padding: EdgeInsets.only(top: 25.0, left: 25.0, right: 25.0),
+          child: Divider(
+            color: Colors.transparent,
+          ),
+        )
       ],
     );
   }
