@@ -5,8 +5,31 @@ import 'package:provider/provider.dart';
 
 import '../components/product_tile.dart';
 
-class ShopPage extends StatelessWidget {
+class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
+
+  @override
+  State<ShopPage> createState() => _ShopPageState();
+}
+
+class _ShopPageState extends State<ShopPage> {
+  // add items to cart method
+  void addItemToCart(ProductModel product) {
+    Provider.of<CartModel>(context, listen: false).addCartItems(product);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.grey[100],
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        title: const Text('Successfully added!'),
+        content: const Text('Check your cart'),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +101,12 @@ class ShopPage extends StatelessWidget {
               itemCount: 4,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
+                // get the method using value of Consumer
                 ProductModel product = value.getShopList()[index];
                 return ProductTile(
                   product: product,
+                  // pass the tapped item to method above
+                  onTap: () => addItemToCart(product),
                 );
               },
             ),
