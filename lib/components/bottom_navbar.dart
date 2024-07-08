@@ -17,18 +17,17 @@ class BottomNavbar extends StatelessWidget {
         tabBackgroundColor: Colors.grey.shade100,
         mainAxisAlignment: MainAxisAlignment.center,
         tabBorderRadius: 16,
+        gap: 8,
         onTabChange: (value) => onTabChange!(value),
         tabs: const [
           // Shop button
           GButton(
             icon: Icons.home,
-            gap: 4,
             text: 'Shop',
           ),
           // Cart button
           GButton(
             icon: Icons.shop,
-            gap: 4,
             text: 'Cart',
           )
         ],
